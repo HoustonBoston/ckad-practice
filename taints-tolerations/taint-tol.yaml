@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp-pod
+spec:
+  containers:
+    - name: nginx-container
+      image: nginx
+  tolerations:    # at pod-level
+    - key: "app"  # must be in double quotes
+      operator: "Equal"
+      value: "blue"
+      effect: "NoSchedule"    # what happens if pod doesn't tolerate taint
