@@ -15,4 +15,4 @@ spec:
   resources:  # resources container requests
     requests:
       cpu: 2
-      memory: "4 Gi"
+      memory: "4Gi"
