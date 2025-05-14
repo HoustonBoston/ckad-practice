@@ -14,5 +14,8 @@ spec:
       image: nginx
   resources:  # resources container requests
     requests:
+      memory: "1Gi"
       cpu: 2
-      memory: "4Gi"
+    limits:   # limits resources container may use
+      memory: "2Gi"
+      cpu: 2
