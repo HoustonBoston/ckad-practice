@@ -1,0 +1,15 @@
+apiVersion: v1    # applicable at the namespace level
+kind: LimitRange
+metadata:
+  name: cpu-resource-constraint
+spec:
+  limits:
+    - default:
+        cpu: 500m   # 0.5 vCPU
+      defaultRequest:
+        cpu: 500m
+      max:
+        cpu: "1"    # 1 vCPU
+      min:
+        cpu: 100m
+      type: Container
