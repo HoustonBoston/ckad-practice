@@ -12,3 +12,7 @@ spec:
   containers: 
     - name: nginx-container
       image: nginx
+  resources:  # resources container requests
+    requests:
+      cpu: 2
+      memory: "4 Gi"
