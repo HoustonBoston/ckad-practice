@@ -10,8 +10,12 @@ metadata:
 
 spec:
   containers: 
-    - name: nginx-container
-      image: nginx
+    - name: simple-webapp
+      image: simple-webapp
+      ports:
+        - containerPort: 8080
+    - name: log-agent   # multi-container pod
+      image: log-agent  
   resources:  # resources container requests
     requests:
       memory: "1Gi"
