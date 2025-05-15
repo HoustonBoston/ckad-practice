@@ -1,0 +1,49 @@
+apiVersion: v1 
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+    
+
+spec:
+  containers: 
+    - name: nginx-container
+      image: nginx
+  nodeSelector:
+    size: Large   # from label assigned to node.
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: size       # key size is either large or medium = place pod on either lg/med node.
+              operator: In
+              values:
+                - Large
+                - Medium
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: size       # key size is small = don't place pod on small node
+              operator: NotIn
+              values:
+                - Small
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: size       # key size = will place on node that has this key
+              operator: Exists
+  resources:  # resources container requests
+    requests:
+      memory: "1Gi"
+      cpu: 2
+    limits:   # limits resources container may use
+      memory: "2Gi"
+      cpu: 2
