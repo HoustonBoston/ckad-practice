@@ -1,0 +1,31 @@
+apiVersion: v1 
+
+kind: Pod
+
+metadata:
+  name: myapp-pod
+  labels:
+    app: myapp
+    
+
+spec:
+  containers: 
+    - name: simple-webapp
+      image: simple-webapp
+      ports:
+        - containerPort: 8080
+      readinessProbe:
+        httpGet:    # for get req
+          path: /api/ready
+          port: 8080
+        initialDelaySeconds: 10  # probes after 10 seconds
+        periodSeconds: 5          # probes every 5 seconds 
+      readinessProbe:
+        tcpSocket:  # for tcp socket
+          port: 3306
+      readinessProbe:
+        exec:
+          command:
+            - cat
+            - /app/is_ready
+
