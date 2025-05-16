@@ -20,6 +20,14 @@ spec:
           port: 8080
         initialDelaySeconds: 10  # probes after 10 seconds
         periodSeconds: 5          # probes every 5 seconds 
+        failureThreshold: 8       # probe stops by default after 3 attempts.
+      livenessProbe:
+        httpGet:
+          path: /api/healthy
+          port: 8080
+        initialDelaySeconds: 10
+        periodSeconds: 5
+        failureThreshold: 8
       readinessProbe:
         tcpSocket:  # for tcp socket
           port: 3306
