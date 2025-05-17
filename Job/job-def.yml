@@ -1,0 +1,14 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: math-add-job
+spec:
+  template:
+    spec:   # move all of the content from pod definition
+      completions: 3    # run 3 pods running this job
+      parallelism: 3    # create 3 pods at once
+      containers:
+        - image: ubuntu
+          name: math-add
+          command: ['expr', '3', '+', '2']
+      restartPolicy: Never  # finish once and exit
