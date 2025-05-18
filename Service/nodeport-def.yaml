@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: myapp-service
+spec:
+  type: NodePort
+  ports: 
+    - targetPort: 80    # port on pod
+      port: 80    # port on service object
+      nodePort: 30008   # port on node
+  selector:   # links service to the pod
+    app: myapp
+    type: front-end
