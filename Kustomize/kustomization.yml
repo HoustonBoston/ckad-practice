@@ -23,6 +23,18 @@ resources:
   - kafka/
 
 
+# patches are applied to one or more objects with specific criteria
+## Ex: this changes the name of deployment api-deployment to web-deployment. | - is an inline patch
+# value not specified when op is remove
+patches:
+  - target:
+      kind: Deployment 
+      name: api-deployment    
+    patch: | -
+      - op: replace
+        path: /metadata/name
+        value: web-deployment   
+
 
 # customizations that need to be made 
 commonLabels:   # applies these labels under metadata to all of the resources
