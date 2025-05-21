@@ -1,0 +1,29 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+# k8s resources to be managed by kustomize (same directory)
+resources:
+  nginx-deployment.yaml
+  nginx-service.yaml
+
+# if there are subdirectories (this needs to be in the root of the directory)
+resources:
+  - api/api-depl.yaml
+  - api/api-service.yaml
+  - db/db-depl.yaml
+  - db/db-service.yaml
+
+# simpler solution for above: 1. in the root specify directories, 2. in the subdirectories have a kustomization.yml file
+# and specify the k8 files to apply the kustomization to
+# 1.
+resources:
+  - api/
+  - db/
+  - cache/
+  - kafka/
+
+
+
+# customizations that need to be made 
+commonLabels:   # applies these labels under metadata to all of the resources
+  company: KodeKloud
