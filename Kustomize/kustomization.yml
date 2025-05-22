@@ -30,7 +30,7 @@ patches:
   - target:
       kind: Deployment 
       name: api-deployment    
-    patch: | -
+    patch: |-
       - op: replace
         path: /metadata/name
         value: web-deployment   
