@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: canary-depl
+  name: canary-depl
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      run: canary-depl
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        run: canary-depl
+        app: hello
+    spec:
+      containers:
+      - image: test:latest
+        name: test
+        imagePullPolicy: Never
+        resources: {}
+status: {}
