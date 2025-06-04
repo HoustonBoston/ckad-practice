@@ -24,7 +24,7 @@ resources:
 
 
 # patches are applied to one or more objects with specific criteria
-## Ex: this changes the name of deployment api-deployment to web-deployment. | - is an inline patch
+## Ex: this changes the name of deployment api-deployment to web-deployment. |- is an inline patch
 # value not specified when op is remove
 patches:
   - target:
